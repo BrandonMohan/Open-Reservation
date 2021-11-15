@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
+import {hideModal} from "../../store/modal"
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
+      dispatch(hideModal())
       return dispatch(
         sessionActions.signup({ email, username, password })
       ).catch(async (res) => {
