@@ -1,7 +1,6 @@
-# Countable
-This Application XXX
+# Open-Reservation
 
-Live link: XXXX Please refer to Wiki pages for further documentation.
+Live link: https://open-reservation.herokuapp.com/ Please refer to Wiki pages for further documentation.
 
 # Development
 * To start the development environment:
@@ -20,3 +19,7 @@ Live link: XXXX Please refer to Wiki pages for further documentation.
 * Sequelize
 * React
 * Redux
+
+
+
+![Open_reservation](https://user-images.githubusercontent.com/61606838/141734167-2217a6a1-a576-4278-b2c2-33d867d8ec6d.png)
