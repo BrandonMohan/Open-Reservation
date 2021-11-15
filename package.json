@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/BrandonMohan/Open-Reservation/issues"
   },
-  "homepage": "https://github.com/BrandonMohan/Open-Reservation#readme"
+  "homepage": "https://github.com/BrandonMohan/Open-Reservation#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
 }

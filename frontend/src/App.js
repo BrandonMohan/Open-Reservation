@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import { restoreCSRF } from "./store/csrf";
+import Modal from "./components/Modal";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <Modal />
       {isLoaded && (
         <Switch>
           <Route path="/login">

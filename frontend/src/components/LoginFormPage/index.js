@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import {hideModal} from "../../store/modal"
 import "./LoginForm.css";
 
 function LoginFormPage() {
@@ -13,9 +14,11 @@ function LoginFormPage() {
 
   if (sessionUser) return <Redirect to="/" />;
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+    dispatch(hideModal())
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
@@ -23,6 +26,11 @@ function LoginFormPage() {
       }
     );
   };
+
+  const demoUser = async () => {
+      dispatch(hideModal())
+    return dispatch(sessionActions.login({credential: "Demo-lition", password: 'password'}))
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -49,7 +57,8 @@ function LoginFormPage() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button onClick={handleSubmit}>Log In</button>
+      <button onClick={demoUser}>Demo User</button>
     </form>
   );
 }
