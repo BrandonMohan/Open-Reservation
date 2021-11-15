@@ -22,4 +22,4 @@ Live link: https://open-reservation.herokuapp.com/ Please refer to Wiki pages fo
 
 
 
-https://user-images.githubusercontent.com/61606838/141731484-a46592ac-5696-4aa4-b3f7-6ce79f18213b.png
+![Open_reservation](https://user-images.githubusercontent.com/61606838/141734167-2217a6a1-a576-4278-b2c2-33d867d8ec6d.png)
