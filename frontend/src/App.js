@@ -9,13 +9,14 @@ import Footer from "./components/Footer";
 import { restoreCSRF } from "./store/csrf";
 import Modal from "./components/Modal";
 import RestaurantFeed from "./components/Restaurants/restaurants";
+import SingleRestaurant from "./components/Restaurants/SingleRestaurant"
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-   if (process.env.NODE_ENV !== "production") restoreCSRF();
-   setIsLoaded(true);
+    if (process.env.NODE_ENV !== "production") restoreCSRF();
+    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path='/restaurants/:id'>
+              <SingleRestaurant />
           </Route>
           <Route path='/'>
               <RestaurantFeed />

@@ -2,6 +2,8 @@ import React, {useEffect} from 'react'
 import { allRestaurants } from '../../store/restaurants'
 import { useDispatch, useSelector } from 'react-redux'
 import RestaurantCard from './RestaurantCard'
+import { showModal, setCurrentModal } from '../../store/modal'
+import CreateRestaurantForm from './CreateRestaurantForm'
 
 function RestaurantsFeed() {
     const dispatch = useDispatch();
@@ -12,15 +14,18 @@ function RestaurantsFeed() {
         dispatch(allRestaurants())
     }, [dispatch])
 
+    const showRestaurantModal = () => {
+        dispatch(setCurrentModal(CreateRestaurantForm))
+        dispatch(showModal());
+    }
 
     return (
         <div>
             <div>
-                {/* <button
-                    className={styles.checkinModalButton}
-                    onClick={showCheckinModal}>
-                    Checkin
-                </button>{" "} */}
+                <button
+                    onClick={showRestaurantModal}>
+                    Create a Restaurant
+                </button>
             </div>
             {restaurants
                 .map((restaurant) => (

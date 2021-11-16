@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {NavLink} from 'react-router-dom'
 import './restaurant.css'
 
 function RestaurantCard({ restaurant }) {
@@ -10,7 +11,9 @@ function RestaurantCard({ restaurant }) {
         <div>
             <div className="listings">
                     <br></br>
+                    <NavLink key={restaurant.id} to={`/restaurants/${restaurant.id}`}>
                     {restaurant.name}
+                    </NavLink>
                     <br></br>
                     {restaurant.address}
                     <br></br>
