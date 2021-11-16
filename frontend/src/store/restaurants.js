@@ -1,6 +1,8 @@
 import {csrfFetch} from './csrf';
 import Cookies from 'js-cookie'
 const GET_RESTAURANTS = 'restaurants/GET_RESTAURANTS'
+const GET_ONE_RESTAURANT = 'restaurants/GET_ONE_RESTAURANT'
+const ADD_ONE_RESTAURANT = 'restaurants/ADD_ONE_RESTAURANT'
 
 const getRestaurants = (restaurants) => {
     return {
@@ -9,11 +11,52 @@ const getRestaurants = (restaurants) => {
     }
 }
 
+const getOne = (restaurant) => {
+    return {
+        type: GET_ONE_RESTAURANT,
+        restaurant
+    }
+}
+
+const addOne = (restaurant) => {
+    return {
+        type: ADD_ONE_RESTAURANT,
+        restaurant
+    }
+}
+
+
+
 export const allRestaurants = (restaurants) => async(dispatch)=> {
     const res = await csrfFetch('/api/restaurants')
     const data = await res.json();
     dispatch(getRestaurants(data));
 }
+
+export const getOneRestaurant = (restaurant) => async (dispatch) =>{
+    const res = await csrfFetch(`/api/restaurants/${restaurant}`)
+    const oneRestaurant = await res.json();
+    dispatch(getOne(oneRestaurant));
+}
+
+export const addOneRestaurant = (payload, userId) => async (dispatch) => {
+    const cookie = Cookies.get('XSRF-TOKEN');
+    const response = await fetch(`/api/restaurants`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'XSRF-TOKEN': `${cookie}`
+        },
+        body: JSON.stringify(payload)
+    })
+
+    if(response.ok) {
+        const restaurant = await response.json();
+        dispatch(addOne(restaurant))
+    }
+}
+
+
 
 const initialState = {}
 export default function restaurantReducer(state = initialState, action) {
@@ -25,6 +68,16 @@ export default function restaurantReducer(state = initialState, action) {
                 allRestaurants[restaurant.id] = restaurant;
             })
             return { ...state, ...allRestaurants}
+        case GET_ONE_RESTAURANT:
+            return {
+                ...state,
+                [action.restaurant.id]: action.restaurant
+            }
+        case ADD_ONE_RESTAURANT:
+            return {
+                ...state,
+                [action.restaurant.id]: action.restaurant
+            }
         default:
             return state;
     }
