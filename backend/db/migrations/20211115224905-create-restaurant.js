@@ -9,21 +9,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       address: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       city: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       state: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       name: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       logo: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(250)
       },
       ownerId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {
