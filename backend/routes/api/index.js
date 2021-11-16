@@ -6,10 +6,13 @@ const { setTokenCookie } = require("../../utils/auth.js");
 const { User } = require("../../db/models");
 const { restoreUser } = require("../../utils/auth.js");
 const { requireAuth } = require("../../utils/auth.js");
+const restaurantsRouter = require("./restaurants")
 
 router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
+
+router.use("/restaurants", restaurantsRouter);
 
 router.post("/test", (req, res) => {
   res.json({ requestBody: req.body });
@@ -41,6 +44,3 @@ router.get("/restore-user", restoreUser, (req, res) => {
 // Test2 route
 
 module.exports = router;
-
-
-
