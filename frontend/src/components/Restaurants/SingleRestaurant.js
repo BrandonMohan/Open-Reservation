@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom'
 import './singlerestaurant.css'
 import { showModal, setCurrentModal } from '../../store/modal'
 import EditRestaurantForm from './UpdateRestaurantForm'
+import DeleteModal from './DeleteModal'
 
 const SingleRestaurant = () => {
     const { id } = useParams();
@@ -23,10 +24,16 @@ const SingleRestaurant = () => {
         dispatch(showModal())
     }
 
+    const handleDelete = (e) => {
+        dispatch(setCurrentModal(DeleteModal))
+        dispatch(showModal())
+    }
+
     return(
         <>
         <div>
             <button onClick={handleEdit}>Edit Restaurant</button>
+            <button onClick={handleDelete}>Delete</button>
         </div>
             <div className="SingleCard">
                 {restaurant?.name}

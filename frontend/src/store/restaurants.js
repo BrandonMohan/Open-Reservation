@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 const GET_RESTAURANTS = 'restaurants/GET_RESTAURANTS'
 const GET_ONE_RESTAURANT = 'restaurants/GET_ONE_RESTAURANT'
 const ADD_ONE_RESTAURANT = 'restaurants/ADD_ONE_RESTAURANT'
+const DELETE_ONE_RESTAURANT = 'restaurants/DELETE_ONE_RESTAURANT'
 
 const getRestaurants = (restaurants) => {
     return {
@@ -21,6 +22,13 @@ const getOne = (restaurant) => {
 const addOne = (restaurant) => {
     return {
         type: ADD_ONE_RESTAURANT,
+        restaurant
+    }
+}
+
+const removeRestaurant = (restaurant) => {
+    return {
+        type: DELETE_ONE_RESTAURANT,
         restaurant
     }
 }
@@ -56,11 +64,19 @@ export const addOneRestaurant = (payload, userId) => async (dispatch) => {
     }
 }
 
+export const deleteRestaurant = (restaurant) => async dispatch => {
+    const res = await csrfFetch(`/api/restaurants/${restaurant}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'}
+    })
+    dispatch(removeRestaurant(restaurant))
+    return res
+}
+
 
 
 const initialState = {}
 export default function restaurantReducer(state = initialState, action) {
-    const newState = { ...state }
     switch (action.type) {
         case GET_RESTAURANTS:
             const allRestaurants = {}
@@ -78,6 +94,10 @@ export default function restaurantReducer(state = initialState, action) {
                 ...state,
                 [action.restaurant.id]: action.restaurant
             }
+        case DELETE_ONE_RESTAURANT:
+            const newState = { ...state };
+            delete newState[action.restaurant.id];
+            return newState;
         default:
             return state;
     }
