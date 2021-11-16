@@ -31,4 +31,15 @@ router.put(
         return res.json(restaurant)
     })
 )
+
+router.delete('/:id', asyncHandler(async(req, res, next) => {
+    const restaurantId = req.params.id
+    const findRestaurant = await Restaurant.findByPk(restaurantId)
+        if(findRestaurant) {
+            const restaurant = await findRestaurant.destroy()
+            res.status(204).end()
+        } else {
+            next();
+        }
+}))
 module.exports = router;
