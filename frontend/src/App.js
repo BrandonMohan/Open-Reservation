@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import { restoreCSRF } from "./store/csrf";
 import Modal from "./components/Modal";
+import RestaurantFeed from "./components/Restaurants/restaurants";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path='/'>
+              <RestaurantFeed />
           </Route>
         </Switch>
       )}
