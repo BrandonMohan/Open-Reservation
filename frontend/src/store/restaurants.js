@@ -94,10 +94,12 @@ export default function restaurantReducer(state = initialState, action) {
                 ...state,
                 [action.restaurant.id]: action.restaurant
             }
-        case DELETE_ONE_RESTAURANT:
+        case DELETE_ONE_RESTAURANT: {
+            console.log("inside delete action", action.restaurant);
             const newState = { ...state };
-            delete newState[action.restaurant.id];
+            delete newState[action.restaurant];
             return newState;
+        }
         default:
             return state;
     }
