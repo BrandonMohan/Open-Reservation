@@ -10,6 +10,8 @@ import { restoreCSRF } from "./store/csrf";
 import Modal from "./components/Modal";
 import RestaurantFeed from "./components/Restaurants/restaurants";
 import SingleRestaurant from "./components/Restaurants/SingleRestaurant"
+import ReservationsFeed from "./components/Reservations/Reservations"
+import ReviewsFeed from "./components/Reviews/Reviews"
 
 function App() {
   const dispatch = useDispatch();
@@ -33,8 +35,10 @@ function App() {
           </Route>
           <Route path='/restaurants/:id'>
               <SingleRestaurant />
+              <ReviewsFeed />
           </Route>
           <Route path='/'>
+              <ReservationsFeed />
               <RestaurantFeed />
           </Route>
         </Switch>

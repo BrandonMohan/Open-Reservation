@@ -19,6 +19,7 @@ function RestaurantsFeed() {
         dispatch(showModal());
     }
 
+
     return (
         <div>
             <div>

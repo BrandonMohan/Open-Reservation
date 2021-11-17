@@ -4,13 +4,17 @@ import sessionReducer from "./session";
 import modal from "./modal";
 import restaurants from './restaurants'
 import singleRestaurant from "./singlerestaurant";
+import reservations from "./reservations"
+import reviews from "./reviews"
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   modal,
   restaurants,
-  singleRestaurant
+  singleRestaurant,
+  reservations,
+  reviews
 });
 
 let enhancer;
