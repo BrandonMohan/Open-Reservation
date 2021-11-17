@@ -7,6 +7,9 @@ import './singlerestaurant.css'
 import { showModal, setCurrentModal } from '../../store/modal'
 import EditRestaurantForm from './UpdateRestaurantForm'
 import DeleteModal from './DeleteModal'
+import {allReviews} from '../../store/reviews'
+import ReviewCard from '../Reviews/ReviewCard'
+
 
 const SingleRestaurant = () => {
     const { id } = useParams();
@@ -15,9 +18,11 @@ const SingleRestaurant = () => {
 
     useEffect(() =>{
         dispatch(loadOneRestaurant(id))
+        dispatch(allReviews())
     }, [dispatch, id])
 
     const restaurant = useSelector((state) => state.singleRestaurant)
+    const reviews = useSelector((state) => Object.values(state.reviews))
 
     const handleEdit = (e) => {
         dispatch(setCurrentModal(EditRestaurantForm))
@@ -35,15 +40,19 @@ const SingleRestaurant = () => {
             <button onClick={handleEdit}>Edit Restaurant</button>
             <button onClick={handleDelete}>Delete</button>
         </div>
-            <div className="SingleCard">
-                {restaurant?.name}
-                <br></br>
-                {restaurant.address}
-                <br></br>
-                {restaurant.city}
-                <br></br>
-                {restaurant.state}
-                <br></br>
+        <div>
+            <ul>
+                {reviews.map((review) => {
+                        return (
+                            <li key={review.id}> {review.review}
+                                {review.rating}
+                                {restaurant.name}
+                            </li>
+                        )
+                })}
+            </ul>
+        </div>
+            <div>
             </div>
 
         </>

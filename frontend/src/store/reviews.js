@@ -9,8 +9,8 @@ const getReviews = (reviews) => {
     }
 }
 
-export const allReviews = (reviews) => async (dispatch) => {
-    const res = await csrfFetch('/api/reviews')
+export const allReviews = () => async (dispatch) => {
+    const res = await csrfFetch(`/api/reviews`)
     const data = await res.json()
     dispatch(getReviews(data))
 }

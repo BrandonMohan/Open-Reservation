@@ -47,13 +47,11 @@ export const getOneRestaurant = (restaurant) => async (dispatch) =>{
     dispatch(getOne(oneRestaurant));
 }
 
-export const addOneRestaurant = (payload, userId) => async (dispatch) => {
-    const cookie = Cookies.get('XSRF-TOKEN');
-    const response = await fetch(`/api/restaurants`, {
+export const addOneRestaurant = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/restaurants`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'XSRF-TOKEN': `${cookie}`
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
     })
@@ -61,6 +59,7 @@ export const addOneRestaurant = (payload, userId) => async (dispatch) => {
     if(response.ok) {
         const restaurant = await response.json();
         dispatch(addOne(restaurant))
+        return restaurant
     }
 }
 

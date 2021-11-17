@@ -11,7 +11,6 @@ import Modal from "./components/Modal";
 import RestaurantFeed from "./components/Restaurants/restaurants";
 import SingleRestaurant from "./components/Restaurants/SingleRestaurant"
 import ReservationsFeed from "./components/Reservations/Reservations"
-import ReviewsFeed from "./components/Reviews/Reviews"
 
 function App() {
   const dispatch = useDispatch();
@@ -33,11 +32,10 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/restaurants/:id'>
+          <Route exact path='/restaurants/:id'>
               <SingleRestaurant />
-              <ReviewsFeed />
           </Route>
-          <Route path='/'>
+          <Route exact path='/'>
               <ReservationsFeed />
               <RestaurantFeed />
           </Route>

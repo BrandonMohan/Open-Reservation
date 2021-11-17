@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {NavLink} from 'react-router-dom'
-import './reviews.css'
+import './reviews.css';
 
 function ReviewCard({ review }) {
     const dispatch = useDispatch();

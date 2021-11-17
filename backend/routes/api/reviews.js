@@ -6,10 +6,11 @@ const {Review, User, Restaurant } = require("../../db/models")
 const router = express.Router();
 
 router.get('/', asyncHandler(async(req, res) => {
+    console.log(req.params.id);
     const reviews = await Review.findAll({
-        Where: { restaurantId: req.params.id}
+        where: {restaurantId: req.params.id}
     })
-    return res.json(reviews)
+    res.json(reviews)
 }))
 
 module.exports = router;

@@ -24,14 +24,14 @@ const CreateRestaurantForm = () => {
         e.preventDefault()
 
         const payload ={
-            name,
             address,
             city,
             state,
+            name,
             logo,
             ownerId: userId
         }
-         dispatch(addOneRestaurant(payload, userId))
+         dispatch(addOneRestaurant(payload))
          dispatch(hideModal())
     }
 
