@@ -15,6 +15,8 @@ function RestaurantCard({ restaurant }) {
                     {restaurant.name}
                     </NavLink>
                     <br></br>
+                    <img className="restaurantImage" src={restaurant.logo} alt="" />
+                    <br></br>
                     {restaurant.address}
                     <br></br>
                     {restaurant.city}
