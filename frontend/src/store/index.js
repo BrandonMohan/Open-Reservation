@@ -7,6 +7,7 @@ import singleRestaurant from "./singlerestaurant";
 import reservations from "./reservations"
 import reviews from "./reviews"
 import singleReview from './singleReview'
+import search from './search'
 
 
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   singleRestaurant,
   reservations,
   reviews,
-  singleReview
+  singleReview,
+  search
 });
 
 let enhancer;

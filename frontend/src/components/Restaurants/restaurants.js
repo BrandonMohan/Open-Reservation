@@ -33,6 +33,10 @@ function RestaurantsFeed() {
                     <RestaurantCard key={restaurant.id} restaurant={restaurant} />
                 ))}
         </div>
+
+
+
+        
     );
 
 }
