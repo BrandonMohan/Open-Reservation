@@ -1,45 +1,85 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
+const { Op } = require("sequelize");
 
-const {Restaurant, User} = require("../../db/models")
+const { Restaurant, User } = require("../../db/models");
 
 const router = express.Router();
 
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const restaurants = await Restaurant.findAll();
+    return res.json(restaurants);
+  })
+);
 
-router.get('/', asyncHandler(async(req, res) => {
-    const restaurants = await Restaurant.findAll()
-    return res.json(restaurants)
-}));
-
-router.get('/:id', asyncHandler(async(req, res) => {
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
     const id = req.params.id;
     const restaurant = await Restaurant.findByPk(id);
-    return res.json(restaurant)
-}))
+    return res.json(restaurant);
+  })
+);
 
-router.post('/', asyncHandler(async(req, res) => {
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
     const restaurant = await Restaurant.create(req.body);
-    res.json(restaurant)
-}))
+    res.json(restaurant);
+  })
+);
 
 router.put(
-    '/:id',
-    asyncHandler(async(req, res) => {
-        const id = req.params.id
-        const restaurant = await Restaurant.findByPk(id);
-        restaurant.update(req.body);
-        return res.json(restaurant)
-    })
-)
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const restaurant = await Restaurant.findByPk(id);
+    restaurant.update(req.body);
+    return res.json(restaurant);
+  })
+);
 
-router.delete('/:id', asyncHandler(async(req, res, next) => {
-    const restaurantId = req.params.id
-    const findRestaurant = await Restaurant.findByPk(restaurantId)
-        if(findRestaurant) {
-            const restaurant = await findRestaurant.destroy()
-            res.status(204).end()
-        } else {
-            next();
-        }
-}))
+router.delete(
+  "/:id",
+  asyncHandler(async (req, res, next) => {
+    const restaurantId = req.params.id;
+    const findRestaurant = await Restaurant.findByPk(restaurantId);
+    if (findRestaurant) {
+      const restaurant = await findRestaurant.destroy();
+      res.status(204).end();
+    } else {
+      next();
+    }
+  })
+);
+
+router.put(
+  "/search/all",
+  asyncHandler(async function (req, res) {
+    const  search  = req.body.input;
+
+    console.log("SEARCH!!!!!!!!!!!!", search);
+    let restaurants;
+    let searchResult = false;
+    if (search !== undefined) {
+      restaurants = await Restaurant.findAll({
+        where: {
+          name: {
+            [Op.iLike]: `%${search}%`,
+          },
+        },
+      });
+      if (restaurants.length > 0) {
+        searchResult = true;
+      }
+    } else {
+      searchResult = false;
+      restaurants = await Restaurant.findAll();
+    }
+    console.log("restu", restaurants);
+    return res.json(restaurants);
+  })
+);
 module.exports = router;
