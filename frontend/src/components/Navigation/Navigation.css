@@ -1,0 +1,55 @@
+
+.leftNav {
+    display: flex;
+    align-items: flex-start;
+    width: 50%;
+    background-color: blue;
+    justify-content: flex-end;
+}
+
+.searchBar {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    background-color: pink;
+}
+
+.navContainer {
+    display: flex;
+    align-items: center;
+    height: 125px;
+    background-color: black;
+
+}
+
+.btn {
+    margin-right: 30px;
+    border-radius: 5px;
+}
+
+.homeBtn {
+    max-height: 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    background: transparent;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #fff;
+    color: white;
+    text-decoration: none;
+}
+
+.profileBtn {
+    max-height: 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    background: transparent;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #fff;
+    color: white;
+    text-decoration: none;
+
+}

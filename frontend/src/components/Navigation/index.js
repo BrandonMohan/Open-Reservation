@@ -64,9 +64,9 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
         sessionLinks =
         (
-           <>
+           <div className="navContainer">
 
-<div className="searchBar">
+    <div className="searchBar">
             <div className="search-container"
             onBlur={(e) => hide(e)}>
               <input
@@ -97,14 +97,16 @@ function Navigation({ isLoaded }) {
 
 
       </div>
-             <ProfileButton user={sessionUser} />
+      <div className="leftNav">
+             <ProfileButton className="profileBtn" user={sessionUser} />
 
-        <button onClick={handleHome}>Home</button>
-    </>
+        <button className="homeBtn" onClick={handleHome}>Home</button>
+        </div>
+    </div>
     )
   } else {
     sessionLinks = (
-      <>
+      <div className="navContainer">
       <div className="searchBar">
             <div className="search-container"
             onBlur={(e) => hide(e)}>
@@ -136,10 +138,12 @@ function Navigation({ isLoaded }) {
 
 
       </div>
+      <div className="leftNav">
         <button className="btn btn-primary" onClick={handleLogin}>Login</button>
         <button onClick={handleSignup}>SignUp</button>
         <button onClick={handleHome}>Home</button>
-      </>
+        </div>
+      </div>
     );
   }
 
