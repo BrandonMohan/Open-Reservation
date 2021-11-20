@@ -18,7 +18,7 @@ module.exports = {
       },
       review: {
         allowNull: false,
-        type: Sequelize.STRING(256)
+        type: Sequelize.STRING(150)
       },
       rating: {
         allowNull: false,

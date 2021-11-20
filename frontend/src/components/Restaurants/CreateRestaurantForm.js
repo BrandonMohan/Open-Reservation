@@ -32,6 +32,7 @@ const CreateRestaurantForm = () => {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
+        <div className="formField">
       <label htmlFor="address">Address</label>
       <input
         id="address"
@@ -44,7 +45,9 @@ const CreateRestaurantForm = () => {
       {formik.touched.address && formik.errors.address ? (
         <div className="errorText">{formik.errors.address}</div>
       ) : null}
+</div>
 
+    <div className="formField">
       <label htmlFor="city">City</label>
       <input
         id="city"
@@ -58,6 +61,9 @@ const CreateRestaurantForm = () => {
         <div className="errorText">{formik.errors.city}</div>
       ) : null}
 
+    </div>
+
+    <div className="formField">
       <label htmlFor="state">State</label>
       <input
         id="state"
@@ -70,7 +76,9 @@ const CreateRestaurantForm = () => {
       {formik.touched.state && formik.errors.state ? (
         <div className="errorText">{formik.errors.state}</div>
       ) : null}
+    </div>
 
+<div className="formField">
       <label htmlFor="name">Name</label>
       <input
         id="name"
@@ -83,7 +91,9 @@ const CreateRestaurantForm = () => {
       {formik.touched.name && formik.errors.name ? (
         <div className="errorText">{formik.errors.name}</div>
       ) : null}
+    </div>
 
+<div className="formField">
       <label htmlFor="logo">Logo</label>
       <input
         id="logo"
@@ -97,7 +107,10 @@ const CreateRestaurantForm = () => {
         <div className="errorText">{formik.errors.logo}</div>
       ) : null}
 
+</div>
+<div className="formField">
       <button type="submit">Submit</button>
+      </div>
     </form>
   );
 };

@@ -12,3 +12,7 @@
     background-color: white;
     border-radius: 5px;
 }
+
+.errorText {
+    color: Red;
+}

@@ -62,8 +62,8 @@ export const addOneReview = (payload) => async dispatch => {
     }
 }
 
-export const editOneReview = (payload) => async dispatch => {
-    const { id } = payload
+export const editOneReview = (payload, id) => async dispatch => {
+    console.log("payload",payload);
     const res = await csrfFetch(`/api/reviews/${id}`, {
         method: 'PUT',
         headers: {
