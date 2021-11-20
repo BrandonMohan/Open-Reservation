@@ -1,12 +1,14 @@
 .footerDiv {
-    /* display: block; */
-    /* position: fixed; */
+    display: flex;
+    align-items: center;
     bottom: 0;
     width: 100%;
     color: grey;
     padding: 32px 0;
     position: fixed;
     background-color: rgb(250 250 250);
+    height: 7px
+
 }
 
 .footerDiv a img {

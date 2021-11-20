@@ -21,8 +21,13 @@ function RestaurantsFeed() {
 
   return (
     <>
-      <div className="createRestBtn">
-        <button onClick={showRestaurantModal}>Create a Restaurant</button>
+      <div className="topPage">
+        <div className="h1Container">
+          <h1 className="h1Text"> Welcome to Open Reservation!</h1>
+        </div>
+        <div className="createRestBtn">
+          <button onClick={showRestaurantModal}>Create a Restaurant</button>
+        </div>
       </div>
       <div className="restaurantContainer">
         <div></div>

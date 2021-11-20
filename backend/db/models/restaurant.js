@@ -1,11 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Restaurant = sequelize.define('Restaurant', {
-    address: DataTypes.STRING,
-    city: DataTypes.STRING,
-    state: DataTypes.STRING,
-    name: DataTypes.STRING,
-    logo: DataTypes.STRING,
+    address: DataTypes.STRING(50),
+    city: DataTypes.STRING(50),
+    state: DataTypes.STRING(50),
+    name: DataTypes.STRING(50),
+    logo: DataTypes.STRING(256),
     ownerId: DataTypes.INTEGER
   }, {});
   Restaurant.associate = function(models) {
