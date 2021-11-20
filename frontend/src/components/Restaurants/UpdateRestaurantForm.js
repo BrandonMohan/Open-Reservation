@@ -1,84 +1,123 @@
-import {  useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import { editOneRestaurant, loadOneRestaurant } from "../../store/singlerestaurant"
+import { hideModal } from "../../store/modal";
 import { useHistory  } from 'react-router-dom';
-import { editOneRestaurant } from '../../store/singlerestaurant';
-import { hideModal } from '../../store/modal'
-import { loadOneRestaurant} from '../../store/singlerestaurant'
+import { useFormik } from "formik";
+import * as yup from "yup";
+import './CreateRestaurantForm.css'
+
+const UpdateRestaurantForm = () => {
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.session?.user?.id);
+  const restaurantId = useSelector((state) => state.singleRestaurant.id)
 
 
+  const formik = useFormik({
+    initialValues: {
+      address: "",
+      city: "",
+      state: "",
+      name: "",
+      logo: "",
+      ownerId: userId,
+    },
+    validationSchema: yup.object({
+      name: yup.string().min(5).max(50).required("Name must be between 5-50 characters!"),
+      address: yup.string().min(5).max(50).required("Address must be between 5-50 characters!"),
+      city: yup.string().min(5).max(50).required("City must be between 5-50 characters!"),
+      state: yup.string().min(5).max(50).required("State must be between 5-50 characters!"),
+      logo: yup.string().min(5).max(256).required("Logo must be between 5-256 characters!"),
+    }),
+    onSubmit: (values) => {
+        dispatch(editOneRestaurant(values, restaurantId)).then(() =>
+        dispatch(loadOneRestaurant(restaurantId))
+        )
+        dispatch(hideModal())
+    },
+  });
+  return (
+    <form onSubmit={formik.handleSubmit}>
+        <div className="formField">
+      <label htmlFor="address">Address</label>
+      <input
+        id="address"
+        name="address"
+        type="text"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.address}
+      />
+      {formik.touched.address && formik.errors.address ? (
+        <div className="errorText">{formik.errors.address}</div>
+      ) : null}
+</div>
 
-const EditRestaurantForm = () => {
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const [name, setName] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [logo, setLogo] = useState('');
-    const userId = useSelector((state) => state.session?.user?.id)
-    const restaurantId = useSelector((state) => state.singleRestaurant.id)
+    <div className="formField">
+      <label htmlFor="city">City</label>
+      <input
+        id="city"
+        name="city"
+        type="text"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.city}
+      />
+      {formik.touched.city && formik.errors.city ? (
+        <div className="errorText">{formik.errors.city}</div>
+      ) : null}
 
-    const updateName = (e) => setName(e.target.value);
-    const updateAddress = (e) => setAddress(e.target.value);
-    const updateCity = (e) => setCity(e.target.value)
-    const updateState = (e) => setState(e.target.value)
-    const updateLogo = (e) => setLogo(e.target.value)
+    </div>
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    <div className="formField">
+      <label htmlFor="state">State</label>
+      <input
+        id="state"
+        name="state"
+        type="text"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.state}
+      />
+      {formik.touched.state && formik.errors.state ? (
+        <div className="errorText">{formik.errors.state}</div>
+      ) : null}
+    </div>
 
-        const payload ={
-            name,
-            address,
-            city,
-            state,
-            logo,
-            ownerId: userId
-        }
-        console.log("payload", payload);
-         dispatch(editOneRestaurant(payload, restaurantId)).then(() =>
-         dispatch(loadOneRestaurant(restaurantId))
-         )
-         dispatch(hideModal())
-    }
+<div className="formField">
+      <label htmlFor="name">Name</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.name}
+      />
+      {formik.touched.name && formik.errors.name ? (
+        <div className="errorText">{formik.errors.name}</div>
+      ) : null}
+    </div>
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <input
-                type="text"
-                placeholder="Restaurant Name"
-                value={name}
-                onChange={updateName}
-                />
-                <input
-                type="text"
-                placeholder="Address"
-                value={address}
-                onChange={updateAddress}
-                />
-                <input
-                type="text"
-                placeholder="City"
-                value={city}
-                onChange={updateCity}
-                />
-                <input
-                type="text"
-                placeholder="State"
-                value={state}
-                onChange={updateState}
-                />
-                <input
-                type="text"
-                placeholder="Logo"
-                value={logo}
-                onChange={updateLogo}
-                />
-            </div>
-            <button >Update Restaurant</button>
-        </form>
-    )
-}
+<div className="formField">
+      <label htmlFor="logo">Logo</label>
+      <input
+        id="logo"
+        name="logo"
+        type="text"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values.logo}
+      />
+      {formik.touched.logo && formik.errors.logo ? (
+        <div className="errorText">{formik.errors.logo}</div>
+      ) : null}
 
-export default EditRestaurantForm
+</div>
+<div className="formField">
+      <button type="submit">Submit</button>
+      </div>
+    </form>
+  );
+};
+
+export default UpdateRestaurantForm;

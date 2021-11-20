@@ -11,7 +11,6 @@ import Modal from "./components/Modal";
 import RestaurantFeed from "./components/Restaurants/restaurants";
 import SingleRestaurant from "./components/Restaurants/SingleRestaurant"
 import SplashPage from "./components/SplashPage";
-import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
 
 function App() {
   const dispatch = useDispatch();
