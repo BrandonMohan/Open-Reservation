@@ -4,9 +4,11 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
 import {hideModal} from "../../store/modal"
+import { useHistory } from "react-router-dom"
 
 function SignupFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory()
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -20,6 +22,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
+      history.push('/home')
       dispatch(hideModal())
       return dispatch(
         sessionActions.signup({ email, username, password })

@@ -50,7 +50,7 @@ function Navigation({ isLoaded }) {
   }
 
   const handleHome = (e) => {
-      history.push('/')
+      history.push('/home')
   }
 
   useEffect(() => {

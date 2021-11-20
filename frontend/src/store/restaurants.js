@@ -47,13 +47,13 @@ export const getOneRestaurant = (restaurant) => async (dispatch) =>{
     dispatch(getOne(oneRestaurant));
 }
 
-export const addOneRestaurant = (payload) => async (dispatch) => {
+export const addOneRestaurant = (payload, userId) => async (dispatch) => {
     const response = await csrfFetch(`/api/restaurants`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload, userId)
     })
 
     if(response.ok) {

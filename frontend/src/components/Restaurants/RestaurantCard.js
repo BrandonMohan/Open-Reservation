@@ -1,27 +1,41 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {NavLink} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import './restaurant.css'
 
 function RestaurantCard({ restaurant }) {
     const dispatch = useDispatch();
+    const history = useHistory()
+
+    const handleRedirect = (e) => {
+        history.push(`/restaurants/${restaurant.id}`)
+    }
 
 
     return (
         <div>
-            <div className="listings">
+            <div className="listings" onClick={handleRedirect}>
                     <br></br>
-                    <NavLink key={restaurant.id} to={`/restaurants/${restaurant.id}`}>
+                    <div className="resName">
                     {restaurant.name}
-                    </NavLink>
+                    </div>
                     <br></br>
                     <img className="restaurantImage" src={restaurant.logo} alt="" />
                     <br></br>
+                    <div className="cardText">
+                        <div className="resAddress">
                     {restaurant.address}
+                    </div>
                     <br></br>
+                    <div className="resCity">
                     {restaurant.city}
+                    </div>
                     <br></br>
+                    <div className="resState">
                     {restaurant.state}
+                    </div>
+                    </div>
             </div>
         </div>
     );

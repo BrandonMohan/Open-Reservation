@@ -19,7 +19,7 @@ const DeleteModal = () => {
         dispatch(deleteRestaurant(restaurant.id))
             dispatch(setCurrentModal(ConfirmModal))
             dispatch(showModal())
-        history.push('/')
+        history.push('/home')
     }
 
     const handleCancel = (e) => {

@@ -10,7 +10,8 @@ import { restoreCSRF } from "./store/csrf";
 import Modal from "./components/Modal";
 import RestaurantFeed from "./components/Restaurants/restaurants";
 import SingleRestaurant from "./components/Restaurants/SingleRestaurant"
-import ReservationsFeed from "./components/Reservations/Reservations"
+import SplashPage from "./components/SplashPage";
+import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,9 +36,11 @@ function App() {
           <Route exact path='/restaurants/:id'>
               <SingleRestaurant />
           </Route>
-          <Route exact path='/'>
-              <ReservationsFeed />
+          <Route exact path='/home'>
               <RestaurantFeed />
+          </Route>
+          <Route exact path='/'>
+              <SplashPage />
           </Route>
         </Switch>
       )}
