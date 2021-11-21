@@ -4,7 +4,6 @@ import sessionReducer from "./session";
 import modal from "./modal";
 import restaurants from './restaurants'
 import singleRestaurant from "./singlerestaurant";
-import reservations from "./reservations"
 import reviews from "./reviews"
 import singleReview from './singleReview'
 import search from './search'
@@ -15,7 +14,6 @@ const rootReducer = combineReducers({
   modal,
   restaurants,
   singleRestaurant,
-  reservations,
   reviews,
   singleReview,
   search

@@ -18,6 +18,9 @@ import { loadOneReview } from '../../store/singleReview'
 const SingleRestaurant = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.session.user)
+
+
 
     useEffect(() =>{
         dispatch(loadOneRestaurant(id))
@@ -38,7 +41,6 @@ const SingleRestaurant = () => {
 
     const handleDeleteReview = (reviewId) => {
         dispatch(deleteReview(reviewId))
-        console.log(reviewId);
         dispatch(setCurrentModal(ConfirmModal))
         dispatch(showModal())
     }
@@ -54,12 +56,17 @@ const SingleRestaurant = () => {
         dispatch(showModal())
     }
 
+    const idArr = reviews.map((oneReview) => {
+       return oneReview.userId
+    })
+
+
     return(
         <>
         <div>
-            <button onClick={handleCreateReview}>Leave a Review</button>
-            <button onClick={handleEdit}>Edit Restaurant</button>
-            <button onClick={handleDelete}>Delete</button>
+           { idArr.includes(user.id) ? null : <button onClick={handleCreateReview}>Leave a Review</button>}
+            { user.id === restaurant.ownerId ? <button onClick={handleEdit}>Edit Restaurant</button> : null}
+            { user.id === restaurant.ownerId ? <button onClick={handleDelete}>Delete</button> : null}
         </div>
         <div className="SingleCard">
                 {restaurant?.name}
@@ -82,8 +89,8 @@ const SingleRestaurant = () => {
                              Review: {review.review}
                              <br></br>
                              Rating: {review.rating}/5
-                             <button type="button" onClick={()=>handleDeleteReview(review.id)}>Delete</button>
-                             <button type="button" onClick={()=>handleEditReview(review)}>Edit</button>
+                             { user.id === review.userId ? <button type="button" onClick={()=>handleDeleteReview(review.id)}>Delete</button> : null}
+                             { user.id === review.userId ? <button type="button" onClick={()=>handleEditReview(review)}>Edit</button> : null}
                              </li>
                         )
                     })}

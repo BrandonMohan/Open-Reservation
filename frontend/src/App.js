@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
@@ -15,6 +15,7 @@ import SplashPage from "./components/SplashPage";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const user = useSelector((state) => state.session.user)
   useEffect(() => {
     if (process.env.NODE_ENV !== "production") restoreCSRF();
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -33,10 +34,10 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path='/restaurants/:id'>
-              <SingleRestaurant />
+              {user ? <SingleRestaurant /> : <SplashPage />}
           </Route>
           <Route exact path='/home'>
-              <RestaurantFeed />
+             {user ? <RestaurantFeed /> : <SplashPage />}
           </Route>
           <Route exact path='/'>
               <SplashPage />

@@ -1,13 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from 'react'
 import { addOneRestaurant } from "../../store/restaurants";
 import { hideModal } from "../../store/modal";
 import { useFormik } from "formik";
+import { allRestaurants } from "../../store/restaurants";
 import * as yup from "yup";
 import './CreateRestaurantForm.css'
 
 const CreateRestaurantForm = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.session?.user?.id);
+//   const [image, setImage] = useState(null);
+
+//   const updateFile = (e) => {
+//       const file = e.target.files[0];
+//       if (file) setImage(file)
+//   }
 
   const formik = useFormik({
     initialValues: {
@@ -23,10 +31,12 @@ const CreateRestaurantForm = () => {
       address: yup.string().min(5).max(50).required("Address must be between 5-50 characters!"),
       city: yup.string().min(5).max(50).required("City must be between 5-50 characters!"),
       state: yup.string().min(5).max(50).required("State must be between 5-50 characters!"),
-      logo: yup.string().min(5).max(256).required("Logo must be between 5-256 characters!"),
+      logo: yup.mixed().required('Logo is required, please add an image!'),
     }),
-    onSubmit: (values) => {
-      dispatch(addOneRestaurant(values, userId));
+    onSubmit: async (values) => {
+      dispatch(addOneRestaurant(values)).then(() =>
+      dispatch(allRestaurants())
+      )
       dispatch(hideModal());
     },
   });
@@ -95,14 +105,9 @@ const CreateRestaurantForm = () => {
 
 <div className="formField">
       <label htmlFor="logo">Logo</label>
-      <input
-        id="logo"
-        name="logo"
-        type="text"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.logo}
-      />
+      <input id="logo" name="logo" type="file" onChange={(event) => {
+  formik.setFieldValue("logo", event.currentTarget.files[0]);
+}} />
       {formik.touched.logo && formik.errors.logo ? (
         <div className="errorText">{formik.errors.logo}</div>
       ) : null}

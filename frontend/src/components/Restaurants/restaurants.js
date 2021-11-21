@@ -7,7 +7,7 @@ import CreateRestaurantForm from "./CreateRestaurantForm";
 
 function RestaurantsFeed() {
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.session.user)
   const restaurants = useSelector((state) => Object.values(state.restaurants));
 
   useEffect(() => {
@@ -25,15 +25,15 @@ function RestaurantsFeed() {
         <div className="h1Container">
           <h1 className="h1Text"> Welcome to Open Reservation!</h1>
         </div>
-        <div className="createRestBtn">
+        { user ? <div className="createRestBtn">
           <button onClick={showRestaurantModal}>Create a Restaurant</button>
-        </div>
+        </div> : null}
       </div>
       <div className="restaurantContainer">
         <div></div>
         {restaurants.map((restaurant) => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} />
-        ))}
+        )).reverse()}
       </div>
     </>
   );
