@@ -1,7 +1,8 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { Op } = require("sequelize");
-
+const {singleMulterUpload} = require("../../awsS3")
+const {singlePublicFileUpload} = require("../../awsS3")
 const { Restaurant, User } = require("../../db/models");
 
 const router = express.Router();
@@ -23,13 +24,13 @@ router.get(
   })
 );
 
-router.post(
-  "/",
-  asyncHandler(async (req, res) => {
-    const restaurant = await Restaurant.create(req.body);
-    res.json(restaurant);
-  })
-);
+// router.post(
+//   "/",
+//   asyncHandler(async (req, res) => {
+//     const restaurant = await Restaurant.create(req.body);
+//     res.json(restaurant);
+//   })
+// );
 
 router.put(
   "/:id",
@@ -82,4 +83,29 @@ router.put(
     return res.json(restaurants);
   })
 );
+
+
+router.post(
+    "/",
+    singleMulterUpload("logo"),
+    asyncHandler(async (req, res) => {
+        console.log("reqqqqqqqqqqq", req.file);
+      const { address, city, state, name, ownerId } = req.body;
+      const logo = await singlePublicFileUpload(req.file);
+      const restaurant = await Restaurant.create({
+        address,
+        city,
+        state,
+        name,
+        logo,
+        ownerId
+      });
+
+      return res.json({
+        restaurant,
+      });
+    })
+  );
+
+
 module.exports = router;

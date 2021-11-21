@@ -47,13 +47,26 @@ export const getOneRestaurant = (restaurant) => async (dispatch) =>{
     dispatch(getOne(oneRestaurant));
 }
 
-export const addOneRestaurant = (payload, userId) => async (dispatch) => {
+export const addOneRestaurant = (payload) => async (dispatch) => {
+    console.log("PAYLOAD", payload);
+    const { address, city, state, name, logo, ownerId } = payload;
+    console.log(address, city, state, name, logo, ownerId);
+    const data = new FormData();
+    data.append("address", address);
+    data.append("city", city);
+    data.append("state", state);
+    data.append("name", name);
+    data.append("ownerId", ownerId);
+    if (logo) data.append("logo", logo);
+
+    console.log(JSON.stringify(data));
+
     const response = await csrfFetch(`/api/restaurants`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': "multipart/form-data",
         },
-        body: JSON.stringify(payload, userId)
+        body: data
     })
 
     if(response.ok) {
@@ -84,10 +97,7 @@ export default function restaurantReducer(state = initialState, action) {
             })
             return { ...state, ...allRestaurants}
         case GET_ONE_RESTAURANT:
-            return {
-                ...state,
-                [action.restaurant.id]: action.restaurant
-            }
+            return { ...state, restaurant: action.payload };
         case ADD_ONE_RESTAURANT:
             return {
                 ...state,
