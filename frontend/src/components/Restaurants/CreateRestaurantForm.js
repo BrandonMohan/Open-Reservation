@@ -23,7 +23,7 @@ const CreateRestaurantForm = () => {
       city: "",
       state: "",
       name: "",
-      logo: "null",
+      logo: "",
       ownerId: userId,
     },
     validationSchema: yup.object({
@@ -31,10 +31,10 @@ const CreateRestaurantForm = () => {
       address: yup.string().min(5).max(50).required("Address must be between 5-50 characters!"),
       city: yup.string().min(5).max(50).required("City must be between 5-50 characters!"),
       state: yup.string().min(5).max(50).required("State must be between 5-50 characters!"),
-      logo: yup.string().required("Logo is required"),
+      logo: yup.mixed().required('Logo is required, please add an image!'),
     }),
-    onSubmit: (values) => {
-      dispatch(addOneRestaurant(values, userId)).then(() =>
+    onSubmit: async (values) => {
+      dispatch(addOneRestaurant(values)).then(() =>
       dispatch(allRestaurants())
       )
       dispatch(hideModal());

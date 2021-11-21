@@ -88,7 +88,7 @@ export default function reviewsReducer(state=initialState, action) {
             Object.values(action.reviews).forEach((review) => {
                 allReviews[review.id] = review
             })
-            return {...state, ...allReviews}
+            return {...allReviews}
         case DELETE_ONE_REVIEW: {
             const newState = {...state}
             delete newState[action.review]

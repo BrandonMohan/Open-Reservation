@@ -14,25 +14,27 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/home" />;
+  if (sessionUser){
+     dispatch(hideModal())
+      return <Redirect to="/home" />;
+}
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    history.push('/home')
-    dispatch(hideModal())
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
-  };
+     dispatch(sessionActions.login({ credential, password })).catch(
+        async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+
+        }
+        )
+    };
 
   const demoUser = async () => {
       history.push('/home')
-      dispatch(hideModal())
+    //   dispatch(hideModal())
     return dispatch(sessionActions.login({credential: "Demo-lition", password: 'password'}))
   }
 
@@ -40,7 +42,7 @@ function LoginFormPage() {
     <form onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+          <li className="errorText" key={idx}>{error}</li>
         ))}
       </ul>
       <label>
@@ -68,5 +70,3 @@ function LoginFormPage() {
 }
 
 export default LoginFormPage;
-
-
