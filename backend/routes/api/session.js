@@ -78,6 +78,3 @@ module.exports = router;
 //   .then((res) => res.json())
 //   .then((data) => console.log(data));
 // Got value from Application in dev tools
-
-
-

@@ -71,7 +71,7 @@ export const addOneRestaurant = (payload) => async (dispatch) => {
 
     if(response.ok) {
         const restaurant = await response.json();
-        dispatch(addOne(restaurant))
+        dispatch(addOne(restaurant.restaurant))
         // return restaurant
     }
 }
