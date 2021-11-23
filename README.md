@@ -23,7 +23,8 @@ Live link: https://open-reservation.herokuapp.com/ Please refer to Wiki pages fo
 * React
 * Redux
 
-```  const formik = useFormik({
+# Formik form implementation with Yup validation. Includes AWS for logo upload.
+``` onst formik = useFormik({
     initialValues: {
       address: "",
       city: "",
@@ -126,7 +127,9 @@ Live link: https://open-reservation.herokuapp.com/ Please refer to Wiki pages fo
       </div>
     </form>
   );
-}; ```
+}; 
+```
+
 
 # Screenshots
 ![chrome_vg7W9HEP12](https://user-images.githubusercontent.com/61606838/143067690-e01e21cb-7c88-42ce-879e-2496e7d703c1.png)
