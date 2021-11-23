@@ -17,7 +17,6 @@ export const loadOneReview = (review) => async dispatch => {
 
 const initialState = {}
 const singleReview = (state = initialState, action) => {
-    const newState = {...state}
     switch (action.type) {
         case LOAD_ONE_REVIEW: {
             return {

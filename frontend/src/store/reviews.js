@@ -43,6 +43,7 @@ export const deleteReview = (id) => async dispatch => {
         method: 'DELETE'
     })
         dispatch(removeReview(id))
+        return res
     }
 
 export const addOneReview = (payload) => async dispatch => {

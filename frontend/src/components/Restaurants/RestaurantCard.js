@@ -1,10 +1,8 @@
 import React from 'react';
-import { useDispatch, } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import './restaurant.css'
 
 function RestaurantCard({ restaurant }) {
-    const dispatch = useDispatch();
     const history = useHistory()
 
     const handleRedirect = (e) => {

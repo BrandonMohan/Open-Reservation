@@ -1,5 +1,4 @@
 import { csrfFetch } from "./csrf";
-import Cookies from "js-cookie";
 
 const GET_RESTAURANTS = "search/GET_RESTAURANTS";
 
