@@ -52,7 +52,6 @@ function Navigation({ isLoaded }) {
 
   useEffect(() => {
     if (input.length > 0) {
-      console.log("input term", input);
       dispatch(searchRestaurants(input));
     }
   }, [dispatch, input]);

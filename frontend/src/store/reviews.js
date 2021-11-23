@@ -1,5 +1,4 @@
 import {csrfFetch} from './csrf';
-import Cookies from 'js-cookie'
 const GET_REVIEWS = 'reviews/GET_REVIEWS'
 const DELETE_ONE_REVIEW = 'reviews/DELETE_ONE_REVIEW'
 const ADD_ONE_REVIEW = 'reviews/ADD_ONE_REVIEW'
@@ -63,7 +62,6 @@ export const addOneReview = (payload) => async dispatch => {
 }
 
 export const editOneReview = (payload, id) => async dispatch => {
-    console.log("payload",payload);
     const res = await csrfFetch(`/api/reviews/${id}`, {
         method: 'PUT',
         headers: {

@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from 'react'
 import { addOneRestaurant } from "../../store/restaurants";
 import { hideModal } from "../../store/modal";
 import { useFormik } from "formik";
@@ -40,7 +39,6 @@ const CreateRestaurantForm = () => {
       dispatch(hideModal());
     },
   });
-  console.log(formik);
   return (
     <form onSubmit={formik.handleSubmit}>
         <div className="modalContent">

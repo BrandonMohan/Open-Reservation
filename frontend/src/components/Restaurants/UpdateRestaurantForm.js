@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { editOneRestaurant, loadOneRestaurant } from "../../store/singlerestaurant"
 import { hideModal } from "../../store/modal";
-import { useHistory  } from 'react-router-dom';
+
 import { useFormik } from "formik";
 import * as yup from "yup";
 import './CreateRestaurantForm.css'

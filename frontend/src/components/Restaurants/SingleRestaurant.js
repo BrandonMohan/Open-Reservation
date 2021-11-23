@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import {  useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { loadOneRestaurant } from "../../store/singlerestaurant";
@@ -7,7 +7,7 @@ import "./singlerestaurant.css";
 import { showModal, setCurrentModal } from "../../store/modal";
 import EditRestaurantForm from "./UpdateRestaurantForm";
 import DeleteModal from "./DeleteModal";
-import { allReviews, editOneReview } from "../../store/reviews";
+import { allReviews } from "../../store/reviews";
 import { deleteReview } from "../../store/reviews";
 import CreateReviewForm from "../Reviews/CreateReviewForm";
 import UpdateReviewForm from "../Reviews/UpdateReviewForm";

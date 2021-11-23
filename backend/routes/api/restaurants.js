@@ -60,8 +60,6 @@ router.put(
   "/search/all",
   asyncHandler(async function (req, res) {
     const  search  = req.body.input;
-
-    console.log("SEARCH!!!!!!!!!!!!", search);
     let restaurants;
     let searchResult = false;
     if (search !== undefined) {
@@ -79,7 +77,6 @@ router.put(
       searchResult = false;
       restaurants = await Restaurant.findAll();
     }
-    console.log("restu", restaurants);
     return res.json(restaurants);
   })
 );
@@ -89,7 +86,6 @@ router.post(
     "/",
     singleMulterUpload("logo"),
     asyncHandler(async (req, res) => {
-        console.log("reqqqqqqqqqqq", req.file);
       const { address, city, state, name, ownerId } = req.body;
       const logo = await singlePublicFileUpload(req.file);
       const restaurant = await Restaurant.create({

@@ -1,9 +1,8 @@
 import {useDispatch, useSelector} from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { showModal, setCurrentModal, hideModal} from '../../store/modal'
-import {deleteRestaurant, getOneRestaurant} from '../../store/restaurants'
+import {deleteRestaurant} from '../../store/restaurants'
 import ConfirmModal from '../ConfirmModal'
-import { allRestaurants } from '../../store/restaurants'
 
 
 

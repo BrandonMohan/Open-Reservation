@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
 import { hideModal } from "../../store/modal";
 import { useFormik } from "formik";
 import * as yup from "yup";
