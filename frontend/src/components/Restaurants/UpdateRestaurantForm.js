@@ -26,7 +26,7 @@ const UpdateRestaurantForm = () => {
       address: yup.string().min(5).max(50).required("Address must be between 5-50 characters!"),
       city: yup.string().min(5).max(50).required("City must be between 5-50 characters!"),
       state: yup.string().min(5).max(50).required("State must be between 5-50 characters!"),
-      logo: yup.string().min(5).max(256).required("Logo must be between 5-256 characters!"),
+      logo: yup.string().url().min(5).max(256).required("Logo must be between 5-256 characters!"),
     }),
     onSubmit: (values) => {
         dispatch(editOneRestaurant(values, restaurantId)).then(() =>
