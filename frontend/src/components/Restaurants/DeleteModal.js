@@ -32,8 +32,8 @@ const DeleteModal = () => {
             <h2>Are you sure you want to delete this restaurant?</h2>
         </div>
             <div>
-                <button onClick={handleDelete}>Delete</button>
-                <button onClick={handleCancel}>Cancel</button>
+                <button className="buttonClass" onClick={handleDelete}>Delete</button>
+                <button className="buttonClass" onClick={handleCancel}>Cancel</button>
             </div>
         </>
     )

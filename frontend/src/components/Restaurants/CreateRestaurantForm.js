@@ -40,8 +40,10 @@ const CreateRestaurantForm = () => {
       dispatch(hideModal());
     },
   });
+  console.log(formik);
   return (
     <form onSubmit={formik.handleSubmit}>
+        <div className="modalContent">
         <div className="formField">
       <label htmlFor="address">Address</label>
       <input
@@ -114,7 +116,8 @@ const CreateRestaurantForm = () => {
 
 </div>
 <div className="formField">
-      <button type="submit">Submit</button>
+      <button className="buttonClass" type="submit">Submit</button>
+      </div>
       </div>
     </form>
   );

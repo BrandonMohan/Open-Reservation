@@ -16,8 +16,12 @@ export default function SplashPage() {
                     <h1 className={styles.splashTitle}>
                         Fine dining at your fingertips with
                         <span className={styles.splashSpan}>Open Reservation</span>{" "}
-                        
+
                     </h1>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p id="splashDescription" className="splashDescript">Can't decide where to eat? Browse restaurants near you!</p>
                 </div>
             </div>
             <Footer />

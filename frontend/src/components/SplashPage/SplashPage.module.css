@@ -2,7 +2,8 @@
 .splashPic{
     width: 100%;
     object-position:  100% 100%;
-    position: absolute
+    position: absolute;
+    background-size: cover;
 }
 
 .splashPicContainer{
@@ -41,4 +42,17 @@
     height: calc(100vh - 72px);
     position: absolute;
     background: linear-gradient(rgba(15,15,15,0.3), rgba(15,15,15,0.3));
+}
+
+.splashDescript {
+    font-size: 20cm;
+    color: black;
+    height: 40px;
+}
+
+p {
+    font-size: 40px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
 }

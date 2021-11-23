@@ -10,7 +10,7 @@ const ConfirmModal = () => {
     return (
         <>
             <h1>Confirmed!</h1>
-            <button onClick={handleClose}>Close</button>
+            <button className="buttonClass" onClick={handleClose}>Close</button>
         </>
     )
 }

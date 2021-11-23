@@ -69,7 +69,7 @@ function CreateReviewForm() {
 
     </div>
     <div className="formField">
-      <button type="submit">Submit</button>
+      <button className="buttonClass" type="submit">Submit</button>
       </div>
     </form>
     )

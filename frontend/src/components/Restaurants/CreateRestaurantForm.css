@@ -1,3 +1,7 @@
 .errorText {
     color: Red;
 }
+
+input {
+    width: 100%;
+}
