@@ -21,5 +21,5 @@ Live link: https://open-reservation.herokuapp.com/ Please refer to Wiki pages fo
 * Redux
 
 
+![Open_reservation (1)](https://user-images.githubusercontent.com/61606838/143065332-31ff88f1-64be-4789-8313-d9f2c87c1eba.png)
 
-![Open_reservation](https://user-images.githubusercontent.com/61606838/141734167-2217a6a1-a576-4278-b2c2-33d867d8ec6d.png)
