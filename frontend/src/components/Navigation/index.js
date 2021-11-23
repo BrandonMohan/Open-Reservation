@@ -30,8 +30,10 @@ function Navigation({ isLoaded }) {
 
   const reset = () => {
     document.querySelector(".results").classList.add("hidden");
+    document.querySelector(".searchCard").classList.add("hidden");
     setInput("");
   };
+
 
   const handleLogin = (e) => {
     // e.preventDefault();
@@ -71,13 +73,14 @@ function Navigation({ isLoaded }) {
             <div className="results hidden">
               {results?.length > 0 && input.length > 0 ? (
                 Object.values(results).map((res) => (
+                    <div className="searchCard">
                   <NavLink
-                    className="searchCard"
                     onClick={reset}
                     to={`/restaurants/${res.id}`}
                   >
                     <div className="searchName">{res.name}</div>
                   </NavLink>
+                  </div>
                 ))
               ) : (
                 <div className="noResults">No results found</div>
@@ -89,7 +92,7 @@ function Navigation({ isLoaded }) {
           <button className="homeBtn" onClick={handleHome}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
+              className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -98,23 +101,22 @@ function Navigation({ isLoaded }) {
               style={{ transform: "rotate(360deg)" }}
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
               />
             </svg>
           </button>
-          
-          <ProfileButton className="profileBtn" user={sessionUser} />
 
+          <ProfileButton className="profileBtn" user={sessionUser} />
         </div>
       </div>
     );
   } else {
     sessionLinks = (
       <div className="navContainer">
-        <div className="searchBar">
+        {/* <div className="searchBar">
           <div className="search-container" onBlur={(e) => hide(e)}>
             <input
               className="search-bar"
@@ -139,12 +141,14 @@ function Navigation({ isLoaded }) {
               )}
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="leftNav">
-          <button className="btn btn-primary" onClick={handleLogin}>
+          <button className="buttonClass" onClick={handleLogin}>
             Login
           </button>
-          <button onClick={handleSignup}>SignUp</button>
+          <button className="buttonClass" onClick={handleSignup}>
+            SignUp
+          </button>
         </div>
       </div>
     );

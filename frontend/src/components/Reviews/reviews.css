@@ -11,8 +11,13 @@
     margin-top: 20px;
     background-color: white;
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .errorText {
     color: Red;
+}
+
+input, select {
+    width: 100
 }
