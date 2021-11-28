@@ -20,7 +20,7 @@ function CreateReviewForm() {
           rating: 1,
         },
         validationSchema: yup.object({
-          review: yup.string().min(5).max(150).required("Review must be between 5-150 characters!"),
+          review: yup.string().min(5).max(100).required("Review must be between 5-100 characters!"),
           rating: yup.number().min(1).max(5).required("Rating must be a number between 1-5!"),
         }),
         onSubmit: (values) => {

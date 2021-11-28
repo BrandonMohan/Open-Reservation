@@ -15,6 +15,8 @@ const CreateRestaurantForm = () => {
 //       const file = e.target.files[0];
 //       if (file) setImage(file)
 //   }
+const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
+
 
   const formik = useFormik({
     initialValues: {
@@ -30,7 +32,8 @@ const CreateRestaurantForm = () => {
       address: yup.string().min(5).max(50).required("Address must be between 5-50 characters!"),
       city: yup.string().min(5).max(50).required("City must be between 5-50 characters!"),
       state: yup.string().min(5).max(50).required("State must be between 5-50 characters!"),
-      logo: yup.mixed().required('Logo is required, please add an image!'),
+      logo: yup.mixed().required('Logo is required!').test('format',
+      'Supported formats: png, jpg, jpeg', (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))),
     }),
     onSubmit: async (values) => {
       dispatch(addOneRestaurant(values)).then(() =>
@@ -39,6 +42,7 @@ const CreateRestaurantForm = () => {
       dispatch(hideModal());
     },
   });
+  console.log(formik.values);
   return (
     <form onSubmit={formik.handleSubmit}>
         <div className="modalContent">

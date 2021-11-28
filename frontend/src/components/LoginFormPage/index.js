@@ -32,11 +32,16 @@ function LoginFormPage() {
         )
     };
 
-  const demoUser = async () => {
-      history.push('/home')
-    //   dispatch(hideModal())
-    return dispatch(sessionActions.login({credential: "Demo-lition", password: 'password'}))
-  }
+    const demoUser = async (e) => {
+        e.preventDefault();
+        setCredential("Demo-lition");
+        setPassword("password");
+        const demo = dispatch(
+          sessionActions.login({ credential: "Demo-lition", password: "password" })
+        );
+        return demo;
+      };
+
 
   return (
     <form onSubmit={handleSubmit}>
