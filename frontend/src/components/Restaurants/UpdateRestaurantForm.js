@@ -10,15 +10,21 @@ const UpdateRestaurantForm = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.session?.user?.id);
   const restaurantId = useSelector((state) => state.singleRestaurant.id)
+  const restaurantAddress = useSelector((state) => state.singleRestaurant.address)
+  const restaurantCity = useSelector((state) => state.singleRestaurant.city)
+  const restaurantState = useSelector((state) => state.singleRestaurant.state)
+  const restaurantName = useSelector((state) => state.singleRestaurant.name)
+  const restaurantLogo = useSelector((state) => state.singleRestaurant.logo)
+  console.log(restaurantAddress, restaurantCity, restaurantState, restaurantName, restaurantLogo);
 
 
   const formik = useFormik({
     initialValues: {
-      address: "",
-      city: "",
-      state: "",
-      name: "",
-      logo: "",
+      address: restaurantAddress,
+      city: restaurantCity,
+      state: restaurantState,
+      name: restaurantName,
+      logo: restaurantLogo,
       ownerId: userId,
     },
     validationSchema: yup.object({
