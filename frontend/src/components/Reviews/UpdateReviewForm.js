@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { hideModal } from "../../store/modal";
 import { useFormik } from "formik";
@@ -12,6 +13,7 @@ function UpdateReviewForm() {
     const restaurantId = useSelector((state) => state.singleRestaurant.id)
     const userId = useSelector((state) => state.session.user.id)
     const review = useSelector((state) => state.singleReview)
+    const reviewContent = useSelector((state) => state.singleReview.review)
 
 
 
@@ -20,7 +22,7 @@ function UpdateReviewForm() {
         initialValues: {
           userId: userId,
           restaurantId: restaurantId,
-          review: "",
+          review: reviewContent,
           rating: 1,
         },
         validationSchema: yup.object({

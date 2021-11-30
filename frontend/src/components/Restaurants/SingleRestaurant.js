@@ -44,8 +44,8 @@ const SingleRestaurant = () => {
     dispatch(showModal());
   };
 
-  const handleEditReview = (review) => {
-    dispatch(loadOneReview(review.id));
+  const  handleEditReview = async (review) => {
+   await dispatch(loadOneReview(review.id))
     dispatch(setCurrentModal(UpdateReviewForm));
     dispatch(showModal());
   };
