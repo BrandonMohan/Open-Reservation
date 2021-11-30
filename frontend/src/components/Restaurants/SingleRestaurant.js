@@ -1,13 +1,13 @@
 import {  useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
-// import { loadOneRestaurant } from "../../store/singlerestaurant";
+import { loadOneRestaurant } from "../../store/singlerestaurant";
 import ConfirmModal from "../ConfirmModal";
 import "./singlerestaurant.css";
 import { showModal, setCurrentModal } from "../../store/modal";
 import EditRestaurantForm from "./UpdateRestaurantForm";
 import DeleteModal from "./DeleteModal";
-// import { allReviews } from "../../store/reviews";
+import { allReviews } from "../../store/reviews";
 import { deleteReview } from "../../store/reviews";
 import CreateReviewForm from "../Reviews/CreateReviewForm";
 import UpdateReviewForm from "../Reviews/UpdateReviewForm";
@@ -21,8 +21,8 @@ const SingleRestaurant = () => {
   const users = useSelector((state) => state.users);
 
   useEffect(() => {
-    // dispatch(loadOneRestaurant(id));
-    // dispatch(allReviews(id));
+    dispatch(loadOneRestaurant(id));
+    dispatch(allReviews(id));
     dispatch(allUsers());
   }, [dispatch, id]);
 
